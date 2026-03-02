@@ -26,11 +26,23 @@ function Layout:OnEnable()
                     label   = 'Style',
                     options = {
                         { value = 'Default', text = 'Default' },
+                        { value = 'Custom', text = 'Custom' },
                         --{ value = 'Big', text = 'Big' },
                         --{ value = 'Small', text = 'Transparent' }
                     },
                     column  = 4,
                     order   = 1
+                },
+                portrait = {
+                    key = 'unitframes.portrait',
+                    type = 'dropdown',
+                    label = 'Portrait',
+                    options = {
+                        { value = 'Default', text = 'Default' },
+                        { value = 'ClassIcon', text = 'Class Icon' }
+                    },
+                    column = 4,
+                    order = 2
                 },
                 texture = {
                     key = 'general.texture',
@@ -38,7 +50,7 @@ function Layout:OnEnable()
                     label = 'Texture',
                     options = Textures.data,
                     column = 4,
-                    order = 3
+                    order = 4
                 },
             },
             {

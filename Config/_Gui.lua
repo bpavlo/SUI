@@ -156,7 +156,7 @@ function Gui:OnEnable()
     local categories = {
         { title = 'General', name = 'General', layout = options['General'] },
         { title = 'Unitframes', name = 'Unitframes', layout = options['Unitframes'] },
-        -- { title = 'Nameplates', name = 'Nameplates', layout = options['Nameplates'] },
+        { title = 'Nameplates', name = 'Nameplates', layout = options['Nameplates'] },
         { title = 'Actionbar', name = 'Actionbar', layout = options['Actionbar'] },
         { title = 'Castbars', name = 'Castbars', layout = options['Castbars'] },
         { title = 'Tooltip', name = 'Tooltip', layout = options['Tooltip'] },
