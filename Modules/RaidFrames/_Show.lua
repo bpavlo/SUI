@@ -1,6 +1,9 @@
 local Module = SUI:NewModule("RaidFrames.Show");
 
 function Module:OnEnable()
+  -- CompactRaidFrame system doesn't exist in TBC Classic
+  if not CompactRaidFrameManager then return end
+
   local db = SUI.db.profile.maps
 
 local t = {

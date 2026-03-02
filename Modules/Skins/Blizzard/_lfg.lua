@@ -1,6 +1,8 @@
 local Module = SUI:NewModule("Skins.LFG");
 
 function Module:OnEnable()
+  -- LFGListingFrame does not exist in TBC Classic (TBC uses a different LFG tool)
+  if not LFGListingFrameFrameBackgroundTop then return end
   if (SUI:Color()) then
     for i, v in ipairs({
       LFGListingFrameFrameBackgroundTop,
@@ -10,7 +12,7 @@ function Module:OnEnable()
       LFGListingFrameBackgroundArt,
       LFGParentFramePortrait,
     }) do
-      v:SetVertexColor(unpack(SUI:Color()))
+      if v then v:SetVertexColor(unpack(SUI:Color())) end
     end
   end
 end

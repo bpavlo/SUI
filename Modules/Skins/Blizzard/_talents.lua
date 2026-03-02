@@ -47,12 +47,15 @@ function Module:OnEnable()
         PlayerTalentFrameTalentsPvpTalentFrameTalentListInsetBottomEdge, }) do
           v:SetVertexColor(.3, .3, .3)
         end
-        for i, v in pairs({
-          PVEFrameTopFiligree,
-          PVEFrameBottomFiligree,
-          PVEFrameBlueBg,
-        }) do
-        v:SetVertexColor(.5, .5, .5)
+        -- PVEFrame may not exist in TBC
+        if PVEFrameTopFiligree then
+          for i, v in pairs({
+            PVEFrameTopFiligree,
+            PVEFrameBottomFiligree,
+            PVEFrameBlueBg,
+          }) do
+            if v then v:SetVertexColor(.5, .5, .5) end
+          end
         end
         for i, v in pairs({
           PlayerTalentFrameBg,

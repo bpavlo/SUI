@@ -3,9 +3,13 @@ local Module = SUI:NewModule("RaidFrames.Core");
 function Module:OnEnable()
   local db = SUI.db.profile.raidframes
 	if (db) then
+		-- CompactRaidFrame system doesn't exist in TBC Classic
+		if not CompactRaidFrameContainer then return end
+
 		-- HIDE RAIDFRAMERESIZE
 		local n, w, h = "CompactUnitFrameProfilesGeneralOptionsFrame"
 		h, w = _G[n .. "HeightSlider"], _G[n .. "WidthSlider"]
+		if not h or not w then return end
 		h:SetMinMaxValues(1, 200)
 		w:SetMinMaxValues(1, 200)
 

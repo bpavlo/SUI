@@ -1,6 +1,9 @@
 local Module = SUI:NewModule("ActionBars.RetailTransparent");
 
 function Module:OnEnable()
+  -- RetailUIArtFrame is WotLK Classic only; bail on TBC
+  if not RetailUIArtFrame then return end
+
   local db = SUI.db.profile.actionbar
 
   if not (db.style == 'RetailTransparent' or db.style == 'Retail') then

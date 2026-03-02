@@ -24,8 +24,8 @@ function Module:OnEnable()
       ActionBarDownButton,
       ReputationWatchBar,
       MainMenuExpBar,
-      ArtifactWatchBar,
-      HonorWatchBar,
+      ArtifactWatchBar,     -- may be nil on TBC
+      HonorWatchBar,        -- may be nil on TBC
       MainMenuBarPageNumber,
       MainMenuBarPerformanceBar,
       MainMenuBarPerformanceBarFrameButton,
@@ -35,21 +35,23 @@ function Module:OnEnable()
       MainMenuMaxLevelBar1,
       MainMenuMaxLevelBar2,
       MainMenuMaxLevelBar3,
-      StanceButton1.bg,
-      StanceButton2.bg,
-      StanceButton3.bg,
-      StanceButton4.bg,
-      StanceButton5.bg,
-      StanceButton6.bg,
-      StanceButton7.bg,
-      StanceButton8.bg,
+      StanceButton1 and StanceButton1.bg,
+      StanceButton2 and StanceButton2.bg,
+      StanceButton3 and StanceButton3.bg,
+      StanceButton4 and StanceButton4.bg,
+      StanceButton5 and StanceButton5.bg,
+      StanceButton6 and StanceButton6.bg,
+      StanceButton7 and StanceButton7.bg,
+      StanceButton8 and StanceButton8.bg,
       StanceBarLeft,
       StanceBarMiddle,
       StanceBarRight,
     }
 
     for _, frame in pairs(BlizzArt) do
-      frame:SetParent(invisible)
+      if frame and frame.SetParent then
+        frame:SetParent(invisible)
+      end
     end
 
     local holder = CreateFrame("Frame", "MainMenuBarHolderFrame", UIParent)

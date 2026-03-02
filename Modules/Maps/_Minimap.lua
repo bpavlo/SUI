@@ -6,19 +6,26 @@ function Module:OnEnable()
     if not (db.minimap) then MinimapCluster:Hide() return end
     if not (IsAddOnLoaded("SexyMap")) then
       if (SUI:Color()) then
-        for i, v in pairs({
+        local minimapElements = {
           MinimapBorder,
           MiniMapMailBorder,
-          QueueStatusMinimapButtonBorder,
-          select(1, TimeManagerClockButton:GetRegions())
-        }) do
+        }
+        if QueueStatusMinimapButtonBorder then
+          table.insert(minimapElements, QueueStatusMinimapButtonBorder)
+        end
+        if TimeManagerClockButton then
+          table.insert(minimapElements, select(1, TimeManagerClockButton:GetRegions()))
+        end
+        for i, v in pairs(minimapElements) do
           v:SetVertexColor(unpack(SUI:Color(0.15)))
         end
       end
-      select(2, TimeManagerClockButton:GetRegions()):SetVertexColor(1, 1, 1)
+      if TimeManagerClockButton then
+        select(2, TimeManagerClockButton:GetRegions()):SetVertexColor(1, 1, 1)
+      end
 
 
-      if (db.garrison) then
+      if (db.garrison) and C_Garrison and GarrisonLandingPageMinimapButton then
         hooksecurefunc("GarrisonLandingPageMinimapButton_UpdateIcon", function(self)
           local garrisonType = C_Garrison.GetLandingPageGarrisonType()
           -- Legion

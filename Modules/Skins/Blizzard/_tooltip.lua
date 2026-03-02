@@ -27,7 +27,10 @@ function Module:OnEnable()
       if (self.NineSlice) then
         local _, itemLink = GameTooltip:GetItem()
         if itemLink then
-          local azerite = C_AzeriteEmpoweredItem.IsAzeriteEmpoweredItemByID(itemLink) or C_AzeriteItem.IsAzeriteItemByID(itemLink) or false
+          local azerite = false
+          if C_AzeriteEmpoweredItem and C_AzeriteItem then
+            azerite = C_AzeriteEmpoweredItem.IsAzeriteEmpoweredItemByID(itemLink) or C_AzeriteItem.IsAzeriteItemByID(itemLink) or false
+          end
           local _, _, itemRarity = GetItemInfo(itemLink)
           local r, g, b = 0.1, 0.1, 0.1
           if itemRarity then r, g, b = GetItemQualityColor(itemRarity) end
@@ -46,11 +49,14 @@ function Module:OnEnable()
       end
     end
 
-    hooksecurefunc("SharedTooltip_SetBackdropStyle", styleTooltip)
+    -- SharedTooltip_SetBackdropStyle may not exist in TBC
+    if SharedTooltip_SetBackdropStyle then
+      hooksecurefunc("SharedTooltip_SetBackdropStyle", styleTooltip)
+    end
     local tooltips = { GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ItemRefTooltip,ItemRefShoppingTooltip1,ItemRefShoppingTooltip2,WorldMapTooltip,
     WorldMapCompareTooltip1,WorldMapCompareTooltip2,SmallTextTooltip }
     for i, tooltip in next, tooltips do
-      styleTooltip(tooltip)
+      if tooltip then styleTooltip(tooltip) end
     end
   end
 
@@ -80,7 +86,10 @@ function Module:OnEnable()
       if (self.NineSlice) then
         local _, itemLink = self:GetItem()
         if itemLink then
-          local azerite = C_AzeriteEmpoweredItem.IsAzeriteEmpoweredItemByID(itemLink) or C_AzeriteItem.IsAzeriteItemByID(itemLink) or false
+          local azerite = false
+          if C_AzeriteEmpoweredItem and C_AzeriteItem then
+            azerite = C_AzeriteEmpoweredItem.IsAzeriteEmpoweredItemByID(itemLink) or C_AzeriteItem.IsAzeriteItemByID(itemLink) or false
+          end
           local _, _, itemRarity = GetItemInfo(itemLink)
           local r, g, b = 0.1, 0.1, 0.1
           if itemRarity then r, g, b = GetItemQualityColor(itemRarity) end
@@ -99,11 +108,13 @@ function Module:OnEnable()
       end
     end
 
-    hooksecurefunc("SharedTooltip_SetBackdropStyle", styleTooltip)
+    if SharedTooltip_SetBackdropStyle then
+      hooksecurefunc("SharedTooltip_SetBackdropStyle", styleTooltip)
+    end
     local tooltips = { GameTooltip,ShoppingTooltip1,ShoppingTooltip2,ItemRefTooltip,ItemRefShoppingTooltip1,ItemRefShoppingTooltip2,WorldMapTooltip,
     WorldMapCompareTooltip1,WorldMapCompareTooltip2,SmallTextTooltip }
     for i, tooltip in next, tooltips do
-      styleTooltip(tooltip)
+      if tooltip then styleTooltip(tooltip) end
     end
   end)
 end

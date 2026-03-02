@@ -1,8 +1,8 @@
-## Interface: 30400
+## Interface: 20504
 ## Author: Syiana & Muleyo
-## Version: 1.0.0
-## Title: |cfff58cbaS|r|cff009cffUI|r Era
-## Notes: Made with <3 by Syiana & Muleyo
+## Version: 2.5.4-tbc1
+## Title: |cfff58cbaS|r|cff009cffUI|r TBC
+## Notes: SUI for TBC Classic - Made with <3 by Syiana & Muleyo
 ## SavedVariables: SUIDB
 
 ## LIBS

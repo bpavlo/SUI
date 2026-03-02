@@ -1,6 +1,8 @@
-﻿local Friendlist = SUI:NewModule("Chat.Friendlist");
+local Friendlist = SUI:NewModule("Chat.Friendlist");
 
 function Friendlist:OnEnable()
+  -- C_FriendList is required; bail if not available
+  if not C_FriendList then return end
   local db = SUI.db.profile.chat.friendlist
   if (db) then
     function FriendColor_ClassColor(class)

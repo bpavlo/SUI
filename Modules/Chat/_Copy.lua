@@ -41,7 +41,11 @@ function Module:OnEnable()
     scroll:SetScrollChild(copyBox)
 
     scroll.ScrollBar:SetScript("OnMinMaxChanged", function(self, _, max)
-      C_Timer.After(2, function() self:SetValue(max) end)
+      if C_Timer then
+        C_Timer.After(2, function() self:SetValue(max) end)
+      else
+        self:SetValue(max)
+      end
     end)
 
     local function GetChatLines(chat)

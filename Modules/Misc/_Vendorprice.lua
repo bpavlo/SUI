@@ -33,8 +33,10 @@ function Module:OnEnable()
     end
 
     -- OnTooltipSetItem fires twice for recipes
+    -- LE_ITEM_CLASS_RECIPE may not exist in TBC; recipe classID is 9
+    local ITEM_CLASS_RECIPE = LE_ITEM_CLASS_RECIPE or 9
     local function CheckRecipe(tt, classID, isOnTooltipSetItem)
-        if classID == LE_ITEM_CLASS_RECIPE and isOnTooltipSetItem then
+        if classID == ITEM_CLASS_RECIPE and isOnTooltipSetItem then
             tt.isFirstMoneyLine = not tt.isFirstMoneyLine
             return tt.isFirstMoneyLine
         end

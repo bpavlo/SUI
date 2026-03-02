@@ -2,9 +2,18 @@ local Module = SUI:NewModule("Skins.Friendlist");
 
 function Module:OnEnable()
   if (SUI:Color()) then
-    for i, v in pairs({
+    -- FriendsFrame border sub-regions differ between TBC and WotLK Classic
+    -- Guard all accesses to avoid nil errors on TBC
+    local function colorIfExists(list, colorArgs)
+      for _, v in pairs(list) do
+        if v and v.SetVertexColor then
+          v:SetVertexColor(unpack(colorArgs))
+        end
+      end
+    end
+
+    colorIfExists({
       FriendFrameTopBorder,
-      FriendsFrameTopEdge,
       FriendsFrameTopEdge,
       FriendsFrameTopRightCorner,
       FriendsFrameRightEdge,
@@ -20,13 +29,12 @@ function Module:OnEnable()
       FriendsFrameBorderTopRightCorner,
       FriendsFrameBorderTopLeftCorner,
       FriendsFrameBorderBottomLeftCorner,
-      FriendsFrameBorderBottomRightCorner, }) do
-        v:SetVertexColor(unpack(SUI:Color(0.15)))
-    end
-    for i, v in pairs({
+      FriendsFrameBorderBottomRightCorner,
+    }, SUI:Color(0.15))
+
+    colorIfExists({
       FriendsFrameBg,
       FriendsFrameTitleBg,
-      FriendsFrameInsetTopEdge,
       FriendsFrameInsetTopEdge,
       FriendsFrameInsetTopRightCorner,
       FriendsFrameInsetRightEdge,
@@ -34,10 +42,10 @@ function Module:OnEnable()
       FriendsFrameInsetBottomEdge,
       FriendsFrameInsetBottomLeftCorner,
       FriendsFrameInsetLeftEdge,
-      FriendsFrameInsetTopLeftCorner }) do
-        v:SetVertexColor(unpack(SUI:Color()))
-    end
-    for i, v in pairs({
+      FriendsFrameInsetTopLeftCorner,
+    }, SUI:Color())
+
+    colorIfExists({
       FriendsFrameFriendsScrollFrameTop,
       FriendsFrameFriendsScrollFrameMiddle,
       FriendsFrameFriendsScrollFrameBottom,
@@ -46,8 +54,6 @@ function Module:OnEnable()
       FriendsFrameFriendsScrollFrameScrollDownButtonNormal,
       FriendsFrameFriendsScrollFrameScrollUpButtonDisabled,
       FriendsFrameFriendsScrollFrameScrollDownButtonDisabled,
-    }) do
-      v:SetVertexColor(unpack(SUI:Color()))
-    end
+    }, SUI:Color())
   end
 end
